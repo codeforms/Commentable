@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
             $table->text('body');
             $table->morphs('commentable');
             $table->integer('user_id')->unsigned();
-            $table->integer('parent_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -27,7 +27,8 @@ class CreateCommentsTable extends Migration
             $table->foreign('parent_id')
                 ->references('id')
                 ->on('comments')
-                ->onDelete('cascade');
+                ->onDelete(DB::raw('set null'))
+                ->onUpdate('cascade');
         });
     }
 
