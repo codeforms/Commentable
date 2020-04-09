@@ -13,6 +13,23 @@ class Comment extends Model
 	protected $table = 'comments';
 
     /**
+     * 
+     */
+    protected $fillable = ['title', 'body', 'user_id', 'parent_id'];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($comment) {
+            $comment->user_id = auth()->user()->id;
+        });
+    }
+
+    /**
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function parentComment()

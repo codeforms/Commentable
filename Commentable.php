@@ -12,10 +12,6 @@ trait Commentable
      */
     public static function bootCommentable()
     {
-        static::creating(function (self $model) {
-            $model->user_id = auth()->user()->id;
-        });
-
         static::deleted(function (self $model) {
             $model->deleteComments();
         });
@@ -82,13 +78,13 @@ trait Commentable
 	/**
 	 * @return int
 	 */
-	public function countComment(): int
+	public function countComments(): int
 	{
 		return $this->comments()->count();
 	}
 
 	/**
-	 * 
+	 * @return Illuminate\Database\Eloquent\Relations\MorphMany
 	 */
 	public function comments()
     {
