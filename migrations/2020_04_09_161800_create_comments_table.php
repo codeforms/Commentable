@@ -10,7 +10,7 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) 
         {
-            $table->increments('id');
+            $table->id();
             $table->string('title')->nullable();
             $table->text('body');
             $table->morphs('commentable');
@@ -22,12 +22,6 @@ class CreateCommentsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on('comments')
-                ->onDelete(DB::raw('set null'))
-                ->onUpdate('cascade');
         });
     }
 
