@@ -37,7 +37,6 @@ trait Commentable
 	 * @param int 		$comment_id
 	 * @param string 	$title
 	 * @param string 	$body
-	 * @param int 		$parent_id
 	 * 
 	 * @return bool
 	 */
@@ -72,7 +71,7 @@ trait Commentable
 	 */
 	public function hasComments(): bool
 	{
-		return (bool)self::countComment();
+		return (bool)self::countComments();
 	}
 
 	/**
