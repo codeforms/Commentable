@@ -55,7 +55,9 @@ trait Commentable
 	 */
 	public function deleteComment($comment_id)
 	{
-		return $this->comments()->where('id', $comment_id)->delete();
+		$this->comments()->where('id', $comment_id)->delete();
+
+		return Comment::where('parent_id', $comment_id)->update(['parent_id' => null]);
 	}
 
 	/**
