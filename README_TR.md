@@ -10,6 +10,7 @@ Laravel tabanlı model kaynaklarına, basit ve kullanışlı yorum özelliği ka
 ``` php artisan migrate```
 * Commentable trait dosyasını, kullanmak istediğiniz model dosyalarına ekleyiniz;
 ```php
+<?php
 namespace App\Post;
 
 use CodeForms\Repositories\Comment\Commentable;
@@ -25,6 +26,7 @@ class Post extends Model
 
 ## Kullanım
 ```php
+<?php
 $post = Post::find(1);
 
 # bir $post için yeni yorum ekleme
