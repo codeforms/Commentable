@@ -22,9 +22,9 @@ trait Commentable
 	 * @param string	body
 	 * @param int 		$parent_id
 	 * 
-	 * @return bool
+	 * @return object
 	 */
-	public function newComment($title, $body, $parent_id = null)
+	public function newComment($title, $body, $parent_id = null): object
 	{
 		return $this->comments()->create([
 			'title'     => $title,
@@ -40,7 +40,7 @@ trait Commentable
 	 * 
 	 * @return bool
 	 */
-	public function updateComment($comment_id, $title, $body)
+	public function updateComment($comment_id, $title, $body): bool
 	{
 		return $this->comments()->where('id', $comment_id)->update([
 			'title' => $title,
@@ -53,17 +53,15 @@ trait Commentable
 	 * 
 	 * @return bool
 	 */
-	public function deleteComment($comment_id)
+	public function deleteComment($comment_id): bool
 	{
-		$this->comments()->where('id', $comment_id)->delete();
-
-		return Comment::where('parent_id', $comment_id)->update(['parent_id' => null]);
+		return $this->comments()->where('id', $comment_id)->delete();
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function deleteComments()
+	public function deleteComments(): bool
 	{
 		return $this->comments()->delete();
 	}
