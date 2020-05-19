@@ -34,13 +34,13 @@ trait Commentable
 	}
 
 	/**
-	 * @param int 		$comment_id
 	 * @param string 	$title
 	 * @param string 	$body
+	 * @param int 		$comment_id
 	 * 
 	 * @return bool
 	 */
-	public function updateComment($comment_id, $title, $body): bool
+	public function updateComment($title, $body, $comment_id): bool
 	{
 		return $this->comments()->where('id', $comment_id)->update([
 			'title' => $title,
