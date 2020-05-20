@@ -35,7 +35,7 @@ $post->newComment('Merhaba!', 'Bu post için yorumum');
 $post->newComment('Selam!', 'Üstteki Yoruma cevabım.', $comment_id); 
 
 # mevcut bir $post'a yapılan spesifik bir yorumun güncellenmesi
-$post->updateComment($comment_id, 'Merhaba Tekrar', 'Yorumu güncelliyorum');
+$post->updateComment('Merhaba Tekrar', 'Yorumu güncelliyorum', $comment_id);
 
 # mevcut bir $post'a yapılan spesifik bir yorumu ($comment_id) siler
 $post->deleteComment($comment_id);
