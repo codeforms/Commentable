@@ -62,3 +62,27 @@ $comment->childComments()->get();
 $comment->parentComment; // veya
 $comment->parentComment()->first();
 ``` 
+---
+* (Tercihen) UserComments trait dosyasını ```User``` model'a ekleyin;
+UserComments trait dosyası sayesinde, kullanıcıların yaptığı tüm yorum kayıtları object olarak alınabilir.
+```php
+<?php
+namespace App;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use CodeForms\Repositories\Comment\UserComments;
+
+class User extends Authenticatable
+{
+    use Notifiable, UserComments;
+```
+
+#### UserComments kullanımı
+```php
+<?php
+$user = User::find(1);
+
+$user->comments;
+```
