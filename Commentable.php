@@ -71,7 +71,7 @@ trait Commentable
 	 */
 	public function hasComments(): bool
 	{
-		return (bool)self::countComments();
+		return !$this->comments->isEmpty();
 	}
 
 	/**
